@@ -78,6 +78,12 @@ public class RotationInThreeDimensions : MonoBehaviour
     public Transform diffQuaternionB;
     public Transform diffQuaternionD;
 
+    // unity mapped euler into 0-360 interesting choice..
+
+    [Header("Mapping Of Euler Angles ")]
+    public Transform eulerAngleValuesCube;
+    public Vector3 eulerAngleValues;
+
     public enum Space
     {
         Upright, // identity rotation
@@ -331,6 +337,9 @@ public class RotationInThreeDimensions : MonoBehaviour
             interpolationDir = +1;
         }
 
+        eulerAngleValuesCube.Rotate(Vector3.up , Time.deltaTime * -90f);
+        eulerAngleValues = eulerAngleValuesCube.eulerAngles;
+
         // Vector3.RotateTowards
     }
 
@@ -379,5 +388,17 @@ public class RotationInThreeDimensions : MonoBehaviour
 
         Utils.DrawHandles(childRot, x, y, z);
     }
+
+            ///*
+
+        //function RotatePointAroundPivot(point: Vector3, pivot: Vector3, angles: Vector3): Vector3 
+        //{
+        //var dir: Vector3 = point - pivot; // get point direction relative to pivot
+        //dir = Quaternion.Euler(angles) * dir; // rotate it
+        //point = dir + pivot; // calculate rotated point
+        //return point; // return it
+        //}
+
+        // */
 
 }

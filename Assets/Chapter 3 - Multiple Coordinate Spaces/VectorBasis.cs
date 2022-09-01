@@ -49,13 +49,13 @@ public class VectorBasis : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       
 
-        print(IsOrthogonal(orthogonal["a1"] , orthogonal["a2"], orthogonal["a3"]));
+
+        print(IsOrthogonal(orthogonal["a1"], orthogonal["a2"], orthogonal["a3"]));
         print(IsOrthogonal(orthogonal["b1"], orthogonal["b2"], orthogonal["b3"]));
         print(IsOrthogonal(orthogonal["c1"], orthogonal["c2"], orthogonal["c3"]));
 
-        print("Orthonormal " + IsOrthonormal( orthonormal["a1"], orthonormal["a2"], orthonormal["a3"]));
+        print("Orthonormal " + IsOrthonormal(orthonormal["a1"], orthonormal["a2"], orthonormal["a3"]));
         print("Orthonormal " + IsOrthonormal(orthonormal["b1"], orthonormal["b2"], orthonormal["b3"]));
         print("Orthonormal " + IsOrthonormal(orthonormal["c1"], orthonormal["c2"], orthonormal["c3"]));
 
@@ -114,7 +114,7 @@ public class VectorBasis : MonoBehaviour
         // if vectors are perpendicular to each other
         // if dot product length 0 then they are perpendicular because there is no projection
 
-        if (Vector3.Dot(a, b) == 0 && Vector3.Dot(a, c) == 0 && Vector3.Dot(b, c) == 0)
+        if(Vector3.Dot(a, b) == 0 && Vector3.Dot(a, c) == 0 && Vector3.Dot(b, c) == 0)
             return true;
 
         return false;
@@ -123,23 +123,23 @@ public class VectorBasis : MonoBehaviour
 
     // false not orthonormal
     // true is orthonormal
-    bool IsOrthonormal( Vector3 a , Vector3 b , Vector3 c )
+    bool IsOrthonormal(Vector3 a, Vector3 b, Vector3 c)
     {
         // if vectors are perpendicular to each other and unit vectors
-        if (!IsOrthogonal(a, b, c))
+        if(!IsOrthogonal(a, b, c))
         {
             Debug.Log("Not perpendicular");
             return false;
         }
 
-        if (a.magnitude == 1.0f && b.magnitude == 1.0f && c.magnitude == 1.0f)
+        if(a.magnitude == 1.0f && b.magnitude == 1.0f && c.magnitude == 1.0f)
             return true;
 
         return false;
     }
 
 
-    void drawAxis( Transform origin )
+    void drawAxis(Transform origin)
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(origin.position, origin.position + origin.right * 5f);
@@ -175,8 +175,36 @@ public class VectorBasis : MonoBehaviour
 
         drawAxis(origin);
         drawAxis(arbitrary);
+        drawAxis(upRightSpace);
 
-            drawAxis(upRightSpace);
+        //var rect1 = MiniMapController.RectTransformToScreenSpace(SafeAreaRect);
+        //var rect2 = MiniMapController.RectTransformToScreenSpace(QuestPreviewRect);
+        //Vector2 point = Vector2.zero;
 
+        //Rect r1 = rect1;
+        //Rect r2 = rect2;
+        //Rect intersectionRect = new Rect();
+
+        //float minX = Mathf.Max(r1.x, r2.x);
+        //float maxX = Mathf.Min(r1.x + r1.width, r2.x + r2.width);
+        //float minY = Mathf.Max(r1.y, r2.y);
+        //float maxY = Mathf.Min(r1.y + r1.height, r2.y + r2.height);
+
+        //if(minX < maxX && minY < maxY)
+        //{
+        //    intersectionRect = Rect.MinMaxRect(minX, minY, maxX, maxY);
+        //}
+        //else
+        //{
+        //    // Rectangles do not overlap, or overlap has an area of zero (edge/corner overlap)
+        //}
+
+
+
+        //Gizmos.DrawWireCube(rect1.center, rect1.size);
+        //Gizmos.DrawWireCube(rect2.center, rect2.size);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireCube(intersectionRect.center, intersectionRect.size);
     }
+
 }
